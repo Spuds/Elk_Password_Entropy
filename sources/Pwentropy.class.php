@@ -26,7 +26,7 @@ spl_autoload_register(function ($class) {
  * Quick class to interface to the library to enable password checking
  *
  * Just load this class and do a
- * $zxcvbn = new \ZxcvbnPhp\ZxcvbnPhp_Checker("somestring");
+ * $zxcvbn = new \ZxcvbnPhp\ZxcvbnPhp_Checker("some_string");
  * $result= $zxcvbn->pwentropy_response;
  */
 class ZxcvbnPhp_Checker
@@ -38,14 +38,14 @@ class ZxcvbnPhp_Checker
 	protected $_passwd = '';
 
 	/**
-	 * Repsonse from the entropy library
+	 * Response from the entropy library
 	 * @var mixed[]
 	 */
 	public $pwentropy_response = '';
 
 	/**
 	 * Load the passed string and run the checks
-	 * @param type $pw
+	 * @param string $pw
 	 */
 	public function __construct($pw)
 	{

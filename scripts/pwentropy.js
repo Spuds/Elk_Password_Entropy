@@ -32,7 +32,7 @@
 				"#a6c060",
 				"#27b30f"
 			],
-	        word_map = [
+			word_map = [
 				"poor",
 				"weak",
 				"ok",
@@ -47,7 +47,7 @@
 		 * Moves passes params in to global function use
 		 *
 		 * @param {type} checkID id of the password field
-		 * @param {type} pweEntropyLevel miniumm score to pass
+		 * @param {type} pweEntropyLevel minimum score to pass
 		 * @param {type} pweTextStrings text strings
 		 */
 		init = function(checkID, pweEntropyLevel, pweTextStrings, container) {
@@ -63,7 +63,7 @@
 			});
 
 			// Divs to show an error if needed
-			ajax_infobar = document.createElement('div'),
+			ajax_infobar = document.createElement('div');
 
 			// Prepare the infobar to show an error
 			$(ajax_infobar).css({'position': 'fixed', 'top': '0', 'left': '0', 'width': '100%'});

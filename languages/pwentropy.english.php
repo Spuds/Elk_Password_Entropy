@@ -28,5 +28,5 @@ $txt['pwentropy_enabled'] = 'Enable the Password Entropy functions';
 $txt['pwentropy_error'] = 'Error';
 $txt['pwentropy_admin_mod'] = 'Enforce a minimum password score for Admins and Moderators';
 $txt['pwentropy_users'] = 'Enforce a minimum password score for all users';
-$txt['pwentropy_users_note'] = 'Setting/changing enforce values will onlyu apply to admins/moderators unless thier value is set higher';
+$txt['pwentropy_users_note'] = 'Setting/changing enforce values will only apply to admins/moderators unless their value is set higher';
 $txt['pwentropy_note'] = 'Changing/Setting the below enforce values will only affect newly created passwords, existing passwords will not be effected.';

@@ -19,7 +19,7 @@ if (!defined('ELK'))
  * irc_pwentropy()
  *
  * - integrate_register_check, called from members.subs
- * - adds additonal registration checks in place, here password score checking
+ * - adds additional registration checks in place, here password score checking
  *
  * @param mixed[] $regOptions
  * @param object $reg_errors
@@ -38,7 +38,7 @@ function irc_pwentropy(&$regOptions, &$reg_errors)
 	$entropy = new Pwentropy_Controller();
 	$pwentropy_response = $entropy->check_passed($regOptions['password']);
 
-	// If its does not meet the requirments set an error
+	// If its does not meet the requirements set an error
 	if (empty($pwentropy_response['valid']))
 	{
 		loadLanguage('pwentropy');
@@ -52,7 +52,7 @@ function irc_pwentropy(&$regOptions, &$reg_errors)
  * - integrate_manage_registrations, Called from ManageRegistration.controller
  * - Used to add items to the registration subAction array
  *
- * @param type $subActions
+ * @param mixed[] $subActions
  */
 function imr_pwentropy(&$subActions)
 {
@@ -112,6 +112,8 @@ function iaa_pwentropy(&$admin_areas)
  *
  * - integrate_register_before, called from Dispatcher.class
  * - generic integration hook to enable items before a controller is called
+ *
+ * @param string $action
  */
 function irb_pwentropy($action)
 {
@@ -157,7 +159,7 @@ function ipb_pwentropy($action)
  * Loads the javascript that enables the strength meter on a page
  *
  * @param string $area id of the field that has the password to check
- * @param string $container id of the container that the strenght meter will be
+ * @param string $container id of the container that the strength meter will be
  * added after
  */
 function load_pwentropy_js($area, $container = 'elk_autov_pwmain_div')
@@ -185,7 +187,7 @@ function load_pwentropy_js($area, $container = 'elk_autov_pwmain_div')
  * ilpf_pwenropy()
  *
  * - integrate_load_profile_fields, called from profile.subs
- * - used to inject our validation requirments in the input_valid functions
+ * - used to inject our validation requirements in the input_valid functions
  * - Ugly, just like profile fields
  *
  * @param type $profile_fields
@@ -240,7 +242,7 @@ function ilpf_pwentropy(&$profile_fields)
  * Profile fields hook, integrate_' . $hook . '_profile_fields
  *
  * - Called from Profile.subs.php / setupProfileContext
- * - Used to add additonal sections to the profile context areas
+ * - Used to add additional sections to the profile context areas
  * - Here we inject JS when the account page is loaded.
  *
  * @param mixed[] $fields

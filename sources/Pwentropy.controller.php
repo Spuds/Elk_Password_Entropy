@@ -20,7 +20,7 @@ if (!defined('ELK'))
  *
  * - based on https://tech.dropbox.com/2012/04/zxcvbn-realistic-password-strength-estimation/
  *
- * @uses the ZxcvbnPhp libary to do the checks
+ * @uses the ZxcvbnPhp library to do the checks
  */
 class Pwentropy_Controller extends Action_Controller
 {
@@ -38,7 +38,7 @@ class Pwentropy_Controller extends Action_Controller
 
 	/**
 	 * The password string being checked
-	 * @var int
+	 * @var string
 	 */
 	protected $_passwd = null;
 
@@ -56,7 +56,7 @@ class Pwentropy_Controller extends Action_Controller
 	 */
 	public function action_index()
 	{
-		// Going to check you out, thats right, uh-hu
+		// Going to check you out, that's right, uh-hu
 		$this->action_check();
 	}
 
@@ -77,6 +77,8 @@ class Pwentropy_Controller extends Action_Controller
 	 * Checking a password from a passed string
 	 *
 	 * Calls the standard check method and then returns
+	 *
+	 * @param string $passwd password string to test
 	 */
 	public function check_passed($passwd)
 	{
@@ -211,7 +213,7 @@ class Pwentropy_Controller extends Action_Controller
 
 		loadLanguage('pwentropy');
 
-		// Time is a constant, relativly speaking
+		// Time is a constant, relatively speaking
 		$minute = 60;
 		$hour = ($minute * 60);
 		$day = ($hour * 24);
