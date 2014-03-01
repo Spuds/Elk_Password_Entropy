@@ -1,0 +1,26 @@
+.entropy_bar {
+	position: relative;
+	padding: 3px;
+	width: 25%;
+	border: 1px solid #ddd;
+	display: inline-block;
+	border: 1px solid black;
+	background: white;
+	box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+	border-radius: 2px;
+}
+.entropy_bar .full_strength {
+	border-radius: 2px;
+	color: black;
+	position: absolute;
+	z-index: 2;
+	line-height: 1em;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+}
+.entropy_bar .current_percent {
+	z-index: 1;
+	height: 1em;
+	background-color: green;
+}
