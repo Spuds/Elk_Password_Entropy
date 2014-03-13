@@ -3,7 +3,7 @@
 /**
  * @package PWEntropy
  * @author Spuds
- * @copyright (c) 2011-2013 Spuds
+ * @copyright (c) 2011-2014 Spuds
  * @license This Source Code is subject to the terms of the Mozilla Public License
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
@@ -25,9 +25,9 @@ spl_autoload_register(function ($class) {
 /**
  * Quick class to interface to the library to enable password checking
  *
- * Just load this class and do a
- * $zxcvbn = new \ZxcvbnPhp\ZxcvbnPhp_Checker("some_string");
- * $result= $zxcvbn->pwentropy_response;
+ * - Just load this class and do a
+ * - $zxcvbn = new \ZxcvbnPhp\ZxcvbnPhp_Checker("some_string");
+ * - $result = $zxcvbn->pwentropy_response;
  */
 class ZxcvbnPhp_Checker
 {

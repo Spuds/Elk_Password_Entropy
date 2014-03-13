@@ -3,7 +3,7 @@
 /**
  * @package PWEntropy
  * @author Spuds
- * @copyright (c) 2011-2013 Spuds
+ * @copyright (c) 2011-2014 Spuds
  * @license This Source Code is subject to the terms of the Mozilla Public License
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
@@ -64,7 +64,7 @@ class Pwentropy_Controller extends Action_Controller
 	 * Checking a password via ajax, then _api will be added to the sa=
 	 * and this method will be called
 	 *
-	 * Calls the standard check method and then the api return method
+	 * - Calls the standard check method and then the api return method
 	 */
 	public function action_check_api()
 	{
@@ -76,7 +76,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * Checking a password from a passed string
 	 *
-	 * Calls the standard check method and then returns
+	 * - Calls the standard check method and then returns
 	 *
 	 * @param string $passwd password string to test
 	 */
@@ -91,7 +91,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * Checks a password string using the ZxcvbnPhp library
 	 *
-	 * It is accessed via ?action=pwentropy;sa=check
+	 * - It is accessed via ?action=pwentropy;sa=check
 	 */
 	public function action_check()
 	{
@@ -157,7 +157,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * Loads the final details for the response
 	 *
-	 * loads the 'result' key and if possible the 'crack_time_display' key
+	 * - loads the 'result' key and if possible the 'crack_time_display' key
 	 */
 	private function _finialize_results()
 	{
@@ -241,9 +241,9 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * This function handles pwentropy settings
 	 *
-	 * General pwentropy settings.
-	 * Accessed by ?action=admin;area=regcenter;sa=pwentropy
-	 * Requires the admin_forum permission.
+	 * - General pwentropy settings.
+	 * - Accessed by ?action=admin;area=regcenter;sa=pwentropy
+	 * - Requires the admin_forum permission.
 	 */
 	public function action_pwentropySettings_display()
 	{

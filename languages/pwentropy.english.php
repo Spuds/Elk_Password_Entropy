@@ -17,7 +17,7 @@ $txt['pwentropy_months'] = 'months';
 $txt['pwentropy_years'] = 'years';
 $txt['pwentropy_centuries'] = 'centuries';
 $txt['pwentropy_instant'] = 'instant';
-$txt['pwentropy_error_password'] = 'Your password does not meet the minimum safe secutrity level.';
+$txt['pwentropy_error_password'] = 'Your password does not meet the minimum safe security level.';
 
 // general settings etc
 $txt['pwentropy_desc'] = 'Enable the checking of password strength via entropy diagnostics.';
