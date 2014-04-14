@@ -19,7 +19,7 @@ if (!defined('ELK'))
  * irc_pwentropy()
  *
  * - integrate_register_check, called from members.subs
- * - adds additional registration checks in place, here password score checking
+ * - Adds additional registration checks in place, here password score checking
  *
  * @param mixed[] $regOptions
  * @param object $reg_errors
@@ -89,7 +89,7 @@ function imr_pwentropy(&$subActions)
  * iaa_pwentropy()
  *
  * - Admin Hook, integrate_admin_areas, called from Admin.php
- * - used to add/modify admin menu areas
+ * - Used to add/modify admin menu areas
  *
  * @param mixed[] $admin_areas
  */
@@ -111,7 +111,7 @@ function iaa_pwentropy(&$admin_areas)
  * irb_pwentropy
  *
  * - integrate_register_before, called from Dispatcher.class
- * - generic integration hook to enable items before a controller is called
+ * - Generic integration hook to enable items before a controller is called
  *
  * @param string $action
  */
@@ -135,7 +135,7 @@ function irb_pwentropy($action)
  * ipb_pwentropy
  *
  * - integrate_profile_before, called from Dispatcher.class
- * - generic integration hook to enable items before a controller is called
+ * - Generic integration hook to enable items before a controller is called
  *
  * @param string $action
  */
@@ -187,7 +187,7 @@ function load_pwentropy_js($area, $container = 'elk_autov_pwmain_div')
  * ilpf_pwenropy()
  *
  * - integrate_load_profile_fields, called from profile.subs
- * - used to inject our validation requirements in the input_valid functions
+ * - Used to inject our validation requirements in the input_valid functions
  * - Ugly, just like profile fields
  *
  * @param type $profile_fields

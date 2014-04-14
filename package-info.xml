@@ -26,7 +26,7 @@
 		<require-dir name="ext/ZxcvbnPhp" destination="SOURCEDIR/ext">The ZxcvbnPhp entropy library</require-dir>>
 		<hook hook="integrate_register_before" file="SUBSDIR/pwentropy.subs.php" function="irb_pwentropy" />
 		<hook hook="integrate_profile_before" file="SUBSDIR/pwentropy.subs.php" function="ipb_pwentropy" />
-		<hook hook="integrate_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
+		<hook hook="integrate_sa_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
 		<hook hook="integrate_admin_areas" file="SUBSDIR/pwentropy.subs.php" function="iaa_pwentropy" />
 		<hook hook="integrate_register_check" file="SUBSDIR/pwentropy.subs.php" function="irc_pwentropy" />
 		<hook hook="integrate_account_profile_fields" file="SUBSDIR/pwentropy.subs.php" function="iapf_pwentropy" />
@@ -35,7 +35,7 @@
 	</install>
 	<uninstall for="1.0 Beta - 1.0.99">
 		<hook reverse="true" hook="integrate_register_before" file="SUBSDIR/pwentropy.subs.php" function="irb_pwentropy" />
-		<hook reverse="true" hook="integrate_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
+		<hook reverse="true" hook="integrate_sa_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
 		<hook reverse="true" hook="integrate_admin_areas" file="SUBSDIR/pwentropy.subs.php" function="iaa_pwentropy" />
 		<hook reverse="true" hook="integrate_profile_before" file="SUBSDIR/pwentropy.subs.php" function="ipb_pwentropy" />
 		<hook reverse="true" hook="integrate_register_check" file="SUBSDIR/pwentropy.subs.php" function="irc_pwentropy" />

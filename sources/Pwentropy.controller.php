@@ -135,8 +135,8 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * When checking via ajax
 	 *
-	 * - clears the templates
-	 * - returns a json response to the page
+	 * - Clears the templates
+	 * - Returns a json response to the page
 	 */
 	private function EntropyResponse()
 	{
@@ -157,7 +157,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * Loads the final details for the response
 	 *
-	 * - loads the 'result' key and if possible the 'crack_time_display' key
+	 * - Loads the 'result' key and if possible the 'crack_time_display' key
 	 */
 	private function _finialize_results()
 	{
@@ -176,7 +176,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * If we are enforcing a minimum score level, this checks it
 	 *
-	 * - add in the 'valid' key to the response
+	 * - Add in the 'valid' key to the response
 	 */
 	private function _min_required()
 	{
@@ -205,7 +205,7 @@ class Pwentropy_Controller extends Action_Controller
 	/**
 	 * Converts the time to crack in to something readable
 	 *
-	 * - crack_time is provided in seconds, this converts it to a weeks/months/years etc
+	 * - Crack_time is provided in seconds, this converts it to a weeks/months/years etc
 	 */
 	private function _crack_time_to_display()
 	{
