@@ -3,7 +3,7 @@
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
 This ElkArte addon is released under a MPL V1.1 license, a copy of it with its provisions is included with the package.
-This addon uses the [url=https://github.com/bjeavons/zxcvbn-php]zxcvbn-php[/url] library which is released under the GNU GENERAL PUBLIC LICENSE Version 3
+This addon uses the [url=https://github.com/bjeavons/zxcvbn-php]zxcvbn-php[/url] library which is released under the The MIT License (MIT)
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
 This measures the effectiveness of a password in resisting guessing and brute-force attacks. In its usual form, it estimates how many trials an attacker who does not have direct access to the password would need, on average, to guess it correctly. The strength of a password is a function of length, complexity, and unpredictability.
