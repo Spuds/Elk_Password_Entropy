@@ -240,6 +240,7 @@ function ilpf_pwentropy(&$profile_fields)
 
 /**
  * Profile fields hook, integrate_' . $hook . '_profile_fields
+ * integrate_account_profile_fields
  *
  * - Called from Profile.subs.php / setupProfileContext
  * - Used to add additional sections to the profile context areas
