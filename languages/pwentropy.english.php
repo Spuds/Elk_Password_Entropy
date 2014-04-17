@@ -4,7 +4,7 @@
 $txt['pwentropy_none'] = 'None';
 $txt['pwentropy_poor'] = 'Poor';
 $txt['pwentropy_weak'] = 'Weak';
-$txt['pwentropy_ok'] = 'Just OK';
+$txt['pwentropy_ok'] = 'OK';
 $txt['pwentropy_strong'] = 'Strong';
 $txt['pwentropy_excellent'] = 'Excellent';
 $txt['pwentropy_timetocrack'] = 'Time to crack:';

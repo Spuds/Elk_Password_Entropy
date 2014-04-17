@@ -102,7 +102,7 @@ class Pwentropy_Controller extends Action_Controller
 			return;
 
 		// Don't waste cycles on short passwords
-		if (strlen($this->_passwd) > 4)
+		if (strlen($this->_passwd) > 3)
 		{
 			// Going to need to access library
 			require_once(SUBSDIR . '/Pwentropy.class.php');
