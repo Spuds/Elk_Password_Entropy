@@ -281,7 +281,7 @@ class Pwentropy_Controller extends Action_Controller
 	private function _init_pwentropySettingsForm()
 	{
 		// This is really quite wanting.
-		require_once(SUBSDIR . '/Settings.class.php');
+		require_once(SUBSDIR . '/SettingsForm.class.php');
 
 		// Instantiate the form
 		$this->_pweSettings = new Settings_Form();
