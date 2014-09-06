@@ -24,3 +24,7 @@
 	height: 1em;
 	background-color: green;
 }
+#admin_content .entropy_bar, .register_form .entropy_bar {
+	left: 6px;
+	top: 5px;
+}

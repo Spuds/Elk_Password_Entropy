@@ -4,7 +4,7 @@
 	<id>Spuds:PWEntropy</id>
 	<name>Password Entropy</name>
 	<version>1.0</version>
-	<type>modification</type>
+	<type>addon</type>
 	<license><![CDATA[
 /**
  * Password Entropy
@@ -15,15 +15,18 @@
  * @version 1.0
  */
 ]]></license>
-	<install for="1.0 RC2 - 1.0.99">
+	<install for="1.0 - 1.0.99">
 		<readme parsebbc="true">readme.txt</readme>
+		<license type="inline">This ElkArte addon is released under a MPL V1.1 license, a copy of it with its provisions is included with the package.  This addon uses the zxcvbn-php library which is released under the The MIT License (MIT)</license>
+
 		<require-file name="languages/pwentropy.english.php" destination="LANGUAGEDIR/english">The language strings</require-file>
 		<require-file name="sources/Pwentropy.subs.php" destination="SUBSDIR">Support functions for PWEntropy</require-file>
 		<require-file name="sources/Pwentropy.controller.php" destination="CONTROLLERDIR">Main controller for PWEntropy</require-file>
 		<require-file name="sources/Pwentropy.class.php" destination="SUBSDIR">Interface class</require-file>
-		<require-file name="scripts/pwentropy.js" destination="$themedir/scripts">The JS to show the strength meter</require-file>>
-		<require-file name="css/pwentropy.css" destination="$themedir/css">The CSS to show the strength meter</require-file>>
-		<require-dir name="ext/ZxcvbnPhp" destination="SOURCEDIR/ext">The ZxcvbnPhp entropy library</require-dir>>
+		<require-file name="scripts/pwentropy.js" destination="THEMEDIR/scripts">The JS to show the strength meter</require-file>
+		<require-file name="css/pwentropy.css" destination="THEMEDIR/css">The CSS to show the strength meter</require-file>
+		<require-dir name="ext/ZxcvbnPhp" destination="SOURCEDIR/ext">The ZxcvbnPhp entropy library</require-dir>
+
 		<hook hook="integrate_action_register_before" file="SUBSDIR/pwentropy.subs.php" function="irb_pwentropy" />
 		<hook hook="integrate_action_profile_before" file="SUBSDIR/pwentropy.subs.php" function="ipb_pwentropy" />
 		<hook hook="integrate_sa_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
@@ -33,7 +36,8 @@
 		<hook hook="integrate_load_profile_fields" file="SUBSDIR/pwentropy.subs.php" function="ilpf_pwentropy" />
 		<redirect url="?action=admin;area=regcenter;sa=pwentropy" timeout="5000" />
 	</install>
-	<uninstall for="1.0 RC2 - 1.0.99">
+
+	<uninstall for="1.0 - 1.0.99">
 		<hook reverse="true" hook="integrate_action_register_before" file="SUBSDIR/pwentropy.subs.php" function="irb_pwentropy" />
 		<hook reverse="true" hook="integrate_sa_manage_registrations" file="SUBSDIR/pwentropy.subs.php" function="imr_pwentropy" />
 		<hook reverse="true" hook="integrate_admin_areas" file="SUBSDIR/pwentropy.subs.php" function="iaa_pwentropy" />
@@ -41,11 +45,12 @@
 		<hook reverse="true" hook="integrate_register_check" file="SUBSDIR/pwentropy.subs.php" function="irc_pwentropy" />
 		<hook reverse="true" hook="integrate_account_profile_fields" file="SUBSDIR/pwentropy.subs.php" function="iapf_pwentropy" />
 		<hook reverse="true" hook="integrate_load_profile_fields" file="SUBSDIR/pwentropy.subs.php" function="ilpf_pwentropy" />
+
 		<remove-file name="SUBSDIR/Pwentropy.class.php" />
 		<remove-file name="LANGUAGEDIR/english/pwentropy.english.php" />
 		<remove-file name="SUBSDIR/Pwentropy.subs.php" />
-		<remove-file name="$themedir/scripts/pwentropy.js" />
-		<remove-file name="$themedir/css/pwentropy.css" />
+		<remove-file name="THEMEDIR/scripts/pwentropy.js" />
+		<remove-file name="THEMEDIR/css/pwentropy.css" />
 		<remove-file name="CONTROLLERDIR/Pwentropy.controller.php" />
 		<remove-dir name="SOURCEDIR/ext/ZxcvbnPhp" />
 		<redirect url="?action=admin;area=packages;sa=browse" timeout="5000" />
