@@ -29,4 +29,4 @@ $txt['pwentropy_error'] = 'Error';
 $txt['pwentropy_admin_mod'] = 'Enforce a minimum password level for Admins and Moderators';
 $txt['pwentropy_users'] = 'Enforce a minimum password level for all users';
 $txt['pwentropy_users_note'] = 'Applies to Admins/Moderators unless the above setting is higher';
-$txt['pwentropy_note'] = 'Changing/Setting the below enforce values will only affect newly created passwords, existing passwords will not be effected.';
+$txt['pwentropy_note'] = 'Changing/Setting these values will only affect newly created passwords, existing passwords will not be effected.';
