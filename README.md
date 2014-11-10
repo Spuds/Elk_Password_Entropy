@@ -7,7 +7,7 @@
 ###Introduction
 This measures the effectiveness of a password in resisting guessing and brute-force attacks. In its usual form, it estimates how many trials an attacker who does not have direct access to the password would need, on average, to guess it correctly. The strength of a password is a function of length, complexity, and unpredictability.
 
-Unlike basic entropy checks which grades based on the set of symbols (a-zA-A0-9etc) in potential use at each position, this goes further and takes in to account patterns that people will tend to follow and also compares entered passwords against a list of know common passwords that are in use and therefore vulnerable to attacks.
+Unlike basic entropy checks which grades based on the set of symbols (a-z A-Z 0-9 etc) in potential use at each position, this goes further and takes in to account patterns that people will tend to follow and also compares entered passwords against a list of know common passwords that are in use and therefore vulnerable to attacks.
 
 More information can be found [here](https://tech.dropbox.com/2012/04/zxcvbn-realistic-password-strength-estimation/)
 
