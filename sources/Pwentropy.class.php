@@ -19,7 +19,8 @@ namespace ZxcvbnPhp;
  * of that for this namespace
  */
 spl_autoload_register(function ($class) {
-    include EXTDIR . '/' . $class . '.php';
+	$class = str_replace('\\', '/', $class);
+    include_once EXTDIR . '/' . $class . '.php';
 });
 
 /**
