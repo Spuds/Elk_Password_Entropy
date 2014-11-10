@@ -56,10 +56,7 @@ function irc_pwentropy(&$regOptions, &$reg_errors)
  */
 function imr_pwentropy(&$subActions)
 {
-	global $context, $txt, $modSettings;
-
-	if (empty($modSettings['pwentropy_enabled']))
-		return;
+	global $context, $txt;
 
 	loadLanguage('pwentropy');
 
@@ -95,7 +92,7 @@ function imr_pwentropy(&$subActions)
  */
 function iaa_pwentropy(&$admin_areas)
 {
-	global $txt, $modSettings, $scripturl;
+	global $txt, $scripturl;
 
 	loadlanguage('pwentropy');
 
@@ -103,7 +100,6 @@ function iaa_pwentropy(&$admin_areas)
 	$admin_areas['members']['areas']['regcenter']['subsections']['pwentropy'] = array(
 		$txt['pwentropy_name'],
 		'admin_forum',
-		'enabled' => !empty($modSettings['pwentropy_enabled']),
 		'url' => $scripturl . '?action=admin;area=regcenter;sa=pwentropy');
 }
 
