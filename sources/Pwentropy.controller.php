@@ -8,12 +8,14 @@
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
  *
- * @version 1.0
+ * @version 1.0.1
  *
  */
 
 if (!defined('ELK'))
+{
 	die('No access...');
+}
 
 /**
  * This class handles the checking of a passwords entropy level
@@ -26,24 +28,28 @@ class Pwentropy_Controller extends Action_Controller
 {
 	/**
 	 * Holds the ajax response
+	 *
 	 * @var string[]
 	 */
 	protected $_pwentropy_response = array();
 
 	/**
 	 * If this was an ajax request or not
+	 *
 	 * @var boolean
 	 */
 	protected $_api = false;
 
 	/**
 	 * The password string being checked
+	 *
 	 * @var string
 	 */
 	protected $_passwd = null;
 
 	/**
 	 * PWEntopy settings form
+	 *
 	 * @var Settings_Form
 	 */
 	protected $_pweSettings;
@@ -79,6 +85,7 @@ class Pwentropy_Controller extends Action_Controller
 	 * - Calls the standard check method and then returns
 	 *
 	 * @param string $passwd password string to test
+	 * @return array of response keys
 	 */
 	public function check_passed($passwd)
 	{
@@ -99,7 +106,9 @@ class Pwentropy_Controller extends Action_Controller
 
 		// If pwentropy is disabled, we don't go any further
 		if (empty($modSettings['pwentropy_enabled']) && $_REQUEST['sa'] !== 'action_settings')
+		{
 			return;
+		}
 
 		// Don't waste cycles on short passwords
 		if (strlen($this->_passwd) > 3)
@@ -127,9 +136,13 @@ class Pwentropy_Controller extends Action_Controller
 
 		// Back we go
 		if ($this->_api)
+		{
 			$this->EntropyResponse();
+		}
 		else
+		{
 			return $this->_pwentropy_response;
+		}
 	}
 
 	/**
@@ -163,7 +176,9 @@ class Pwentropy_Controller extends Action_Controller
 	{
 		// Place the final touches in to the response array
 		if (empty($this->_pwentropy_response))
+		{
 			$this->_pwentropy_response = array('result' => false);
+		}
 		else
 		{
 			$this->_pwentropy_response += array(
@@ -184,22 +199,34 @@ class Pwentropy_Controller extends Action_Controller
 
 		// If we can't check for some reason, no need to block them
 		if (empty($this->_pwentropy_response))
+		{
 			$this->_pwentropy_response['valid'] = true;
+		}
 
 		// Determine a min level, if there is one at all
 		$min_level = 0;
 		if (($user_info['is_mod'] || $user_info['is_admin']) && !empty($modSettings['pwentropy_admin_mod']))
+		{
 			$min_level = $modSettings['pwentropy_admin_mod'];
+		}
 		elseif (!empty($modSettings['pwentropy_users']))
+		{
 			$min_level = $modSettings['pwentropy_users'];
+		}
 
 		// Does this pass or vail
 		if (empty($min_level))
+		{
 			$this->_pwentropy_response['valid'] = true;
+		}
 		elseif (!empty($min_level) && $this->_pwentropy_response['score'] >= $min_level)
+		{
 			$this->_pwentropy_response['valid'] = true;
+		}
 		else
+		{
 			$this->_pwentropy_response['valid'] = false;
+		}
 	}
 
 	/**
@@ -223,19 +250,33 @@ class Pwentropy_Controller extends Action_Controller
 
 		// Provide a text response based on the seconds needed to crack a password
 		if ($this->_pwentropy_response['crack_time'] < $minute)
+		{
 			return $txt['pwentropy_instant'];
+		}
 		elseif ($this->_pwentropy_response['crack_time'] < $hour)
+		{
 			return (1 + ceil($this->_pwentropy_response['crack_time'] / $minute)) . ' ' . $txt['pwentropy_minutes'];
+		}
 		elseif ($this->_pwentropy_response['crack_time'] < $day)
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $hour)) .  ' ' . $txt['pwentropy_hours'];
+		{
+			return (1 + ceil($this->_pwentropy_response['crack_time'] / $hour)) . ' ' . $txt['pwentropy_hours'];
+		}
 		elseif ($this->_pwentropy_response['crack_time'] < $month)
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $day)) .  ' ' . $txt['pwentropy_days'];
+		{
+			return (1 + ceil($this->_pwentropy_response['crack_time'] / $day)) . ' ' . $txt['pwentropy_days'];
+		}
 		elseif ($this->_pwentropy_response['crack_time'] < $year)
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $month)) .  ' ' . $txt['pwentropy_months'];
+		{
+			return (1 + ceil($this->_pwentropy_response['crack_time'] / $month)) . ' ' . $txt['pwentropy_months'];
+		}
 		elseif ($this->_pwentropy_response['crack_time'] < $century)
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $year)) .  ' ' . $txt['pwentropy_years'];
+		{
+			return (1 + ceil($this->_pwentropy_response['crack_time'] / $year)) . ' ' . $txt['pwentropy_years'];
+		}
 		else
-			return  $txt['pwentropy_centuries'];
+		{
+			return $txt['pwentropy_centuries'];
+		}
 	}
 
 	/**
@@ -306,6 +347,7 @@ class Pwentropy_Controller extends Action_Controller
 			array('select', 'pwentropy_admin_mod', array($txt['pwentropy_none'], $txt['pwentropy_weak'], $txt['pwentropy_ok'], $txt['pwentropy_strong'], $txt['pwentropy_excellent'])),
 			array('select', 'pwentropy_users', array($txt['pwentropy_none'], $txt['pwentropy_weak'], $txt['pwentropy_ok'], $txt['pwentropy_strong'], $txt['pwentropy_excellent']), 'postinput' => $txt['pwentropy_users_note']),
 		);
+
 		return $config_vars;
 	}
 }

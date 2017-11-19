@@ -15,7 +15,7 @@
  * @version 1.0
  */
 ]]></license>
-	<install for="1.0 - 1.0.99">
+	<install for="1.0 - 1.1.99">
 		<readme parsebbc="true">readme.txt</readme>
 		<license type="inline">This ElkArte addon is released under a MPL V1.1 license, a copy of it with its provisions is included with the package.  This addon uses the zxcvbn-php library which is released under the The MIT License (MIT)</license>
 

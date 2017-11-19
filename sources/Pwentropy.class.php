@@ -8,7 +8,7 @@
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
  *
- * @version 1.0
+ * @version 1.0.1
  *
  */
 
@@ -20,7 +20,8 @@ namespace ZxcvbnPhp;
  */
 spl_autoload_register(function ($class) {
 	$class = str_replace('\\', '/', $class);
-    include_once EXTDIR . '/' . $class . '.php';
+	if (file_exists(EXTDIR . '/' . $class . '.php'))
+		include_once EXTDIR . '/' . $class . '.php';
 });
 
 /**
@@ -34,18 +35,21 @@ class ZxcvbnPhp_Checker
 {
 	/**
 	 * password to check
+	 *
 	 * @var string
 	 */
 	protected $_passwd = '';
 
 	/**
 	 * Response from the entropy library
+	 *
 	 * @var mixed[]
 	 */
 	public $pwentropy_response = '';
 
 	/**
 	 * Load the passed string and run the checks
+	 *
 	 * @param string $pw
 	 */
 	public function __construct($pw)

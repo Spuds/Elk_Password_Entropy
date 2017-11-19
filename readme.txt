@@ -1,4 +1,4 @@
-[center][size=16pt][b]Password Entropy Version 1.0[/b][/size][/center]
+[center][size=16pt][b]Password Entropy Version 1.0.1[/b][/size][/center]
 [hr]
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]

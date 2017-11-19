@@ -8,12 +8,14 @@
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
  *
- * @version 1.0
+ * @version 1.0.1
  *
  */
 
 if (!defined('ELK'))
+{
 	die('No access...');
+}
 
 /**
  * irc_pwentropy()
@@ -29,7 +31,9 @@ function irc_pwentropy(&$regOptions, &$reg_errors)
 	global $modSettings;
 
 	if (empty($modSettings['pwentropy_enabled']))
+	{
 		return;
+	}
 
 	// Going to need to access library
 	require_once(CONTROLLERDIR . '/Pwentropy.controller.php');
@@ -113,10 +117,18 @@ function iaa_pwentropy(&$admin_areas)
  */
 function irb_pwentropy($action)
 {
-	global $modSettings;
+	global $modSettings, $context;
 
 	if (empty($modSettings['pwentropy_enabled']))
+	{
 		return;
+	}
+
+	// 1.1 needs some redirection
+	if ($action === 'action_index' && !empty($context['site_action']))
+	{
+		$action = 'action_' . $context['site_action'];
+	}
 
 	// Attach our meter if they are a new registration
 	if ($action === 'action_register' || $action === 'action_register2')
@@ -140,7 +152,9 @@ function ipb_pwentropy($action)
 	global $modSettings;
 
 	if (empty($modSettings['pwentropy_enabled']))
+	{
 		return;
+	}
 
 	// Attach our JS if they are changing authentication passwords
 	if (isset($_GET['area']) && $_GET['area'] === 'authentication')
@@ -249,7 +263,9 @@ function iapf_pwentropy(&$fields)
 	global $modSettings;
 
 	if (empty($modSettings['pwentropy_enabled']))
+	{
 		return;
+	}
 
 	// Attach our JS if they are changing authentication passwords
 	loadJavascriptFile('pwentropy.js');
