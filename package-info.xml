@@ -37,7 +37,7 @@
 		<redirect url="?action=admin;area=regcenter;sa=pwentropy" timeout="5000" />
 	</install>
 
-	<uninstall for="1.0 - 1.0.99">
+	<uninstall for="1.0 - 1.1.99">
 		<hook reverse="true" hook="integrate_action_register_before" file="SUBSDIR/Pwentropy.subs.php" function="irb_pwentropy" />
 		<hook reverse="true" hook="integrate_sa_manage_registrations" file="SUBSDIR/Pwentropy.subs.php" function="imr_pwentropy" />
 		<hook reverse="true" hook="integrate_admin_areas" file="SUBSDIR/Pwentropy.subs.php" function="iaa_pwentropy" />
