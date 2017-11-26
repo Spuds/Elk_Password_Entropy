@@ -1,4 +1,4 @@
-## Password Entropy Version 1.0.1
+## Password Entropy Version
 
 ### License
  - This ElkArte addon is released under a MPL V1.1 license, a copy of it with its provisions is included with the package.
