@@ -3,7 +3,7 @@
 /**
  * @package PWEntropy
  * @author Spuds
- * @copyright (c) 2011-2014 Spuds
+ * @copyright (c) 2011-2021 Spuds
  * @license This Source Code is subject to the terms of the Mozilla Public License
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
@@ -23,7 +23,7 @@ if (!defined('ELK'))
  * - integrate_register_check, called from members.subs
  * - Adds additional registration checks in place, here password score checking
  *
- * @param mixed[] $regOptions
+ * @param array $regOptions
  * @param object $reg_errors
  */
 function irc_pwentropy(&$regOptions, &$reg_errors)
@@ -56,7 +56,7 @@ function irc_pwentropy(&$regOptions, &$reg_errors)
  * - integrate_manage_registrations, Called from ManageRegistration.controller
  * - Used to add items to the registration subAction array
  *
- * @param mixed[] $subActions
+ * @param array $subActions
  */
 function imr_pwentropy(&$subActions)
 {
@@ -92,7 +92,7 @@ function imr_pwentropy(&$subActions)
  * - Admin Hook, integrate_admin_areas, called from Admin.php
  * - Used to add/modify admin menu areas
  *
- * @param mixed[] $admin_areas
+ * @param array $admin_areas
  */
 function iaa_pwentropy(&$admin_areas)
 {
@@ -256,7 +256,7 @@ function ilpf_pwentropy(&$profile_fields)
  * - Used to add additional sections to the profile context areas
  * - Here we inject JS when the account page is loaded.
  *
- * @param mixed[] $fields
+ * @param array $fields
  */
 function iapf_pwentropy(&$fields)
 {

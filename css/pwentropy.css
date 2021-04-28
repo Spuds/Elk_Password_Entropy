@@ -2,12 +2,17 @@
 	position: relative;
 	padding: 3px;
 	width: 25%;
-	border: 1px solid #ddd;
+	border: 1px solid #DDDDDD;
 	display: inline-block;
 	background: white;
-	box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
 	border-radius: 2px;
 }
+
+#elk_autov_pwmain_div + .entropy_bar {
+	top: 6px;
+}
+
 .entropy_bar .full_strength {
 	border-radius: 2px;
 	color: black;
@@ -18,11 +23,13 @@
 	text-align: center;
 	font-weight: bold;
 }
+
 .entropy_bar .current_percent {
 	z-index: 1;
 	height: 1em;
 	background-color: green;
 }
+
 #admin_content .entropy_bar, .register_form .entropy_bar {
 	left: 6px;
 	top: 5px;

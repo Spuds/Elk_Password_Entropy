@@ -3,7 +3,7 @@
 /**
  * @package PWEntropy
  * @author Spuds
- * @copyright (c) 2011-2014 Spuds
+ * @copyright (c) 2011-2021 Spuds
  * @license This Source Code is subject to the terms of the Mozilla Public License
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
@@ -12,10 +12,8 @@
  *
  */
 
-if (!defined('ELK'))
-{
-	die('No access...');
-}
+use ZxcvbnPhp\ZxcvbnPhp_Checker;
+
 
 /**
  * This class handles the checking of a passwords entropy level
@@ -107,7 +105,7 @@ class Pwentropy_Controller extends Action_Controller
 		// If pwentropy is disabled, we don't go any further
 		if (empty($modSettings['pwentropy_enabled']) && $_REQUEST['sa'] !== 'action_settings')
 		{
-			return;
+			return [];
 		}
 
 		// Don't waste cycles on short passwords
@@ -117,7 +115,7 @@ class Pwentropy_Controller extends Action_Controller
 			require_once(SUBSDIR . '/Pwentropy.class.php');
 
 			// Run a check
-			$zxcvbn = new \ZxcvbnPhp\ZxcvbnPhp_Checker($this->_passwd);
+			$zxcvbn = new ZxcvbnPhp_Checker($this->_passwd);
 			$this->_pwentropy_response = $zxcvbn->pwentropy_response;
 		}
 		// Generic poor password response
@@ -139,10 +137,8 @@ class Pwentropy_Controller extends Action_Controller
 		{
 			$this->EntropyResponse();
 		}
-		else
-		{
-			return $this->_pwentropy_response;
-		}
+
+		return $this->_pwentropy_response;
 	}
 
 	/**
@@ -219,7 +215,7 @@ class Pwentropy_Controller extends Action_Controller
 		{
 			$this->_pwentropy_response['valid'] = true;
 		}
-		elseif (!empty($min_level) && $this->_pwentropy_response['score'] >= $min_level)
+		elseif ($this->_pwentropy_response['score'] >= $min_level)
 		{
 			$this->_pwentropy_response['valid'] = true;
 		}
@@ -248,35 +244,42 @@ class Pwentropy_Controller extends Action_Controller
 		$year = ($month * 12);
 		$century = ($year * 100);
 
+		// Pick a crack time, there are slow online to fast offline.
+		// Slow: online_throttling_100_per_hour -> online_throttling_10_per_second -> offline_slow_hashing_1e4_per_second
+		$crackTime = $this->_pwentropy_response['crack_times_seconds']['offline_slow_hashing_1e4_per_second'];
+
 		// Provide a text response based on the seconds needed to crack a password
-		if ($this->_pwentropy_response['crack_time'] < $minute)
+		if ($crackTime < $minute)
 		{
 			return $txt['pwentropy_instant'];
 		}
-		elseif ($this->_pwentropy_response['crack_time'] < $hour)
+
+		if ($crackTime < $hour)
 		{
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $minute)) . ' ' . $txt['pwentropy_minutes'];
+			return (1 + ceil($crackTime / $minute)) . ' ' . $txt['pwentropy_minutes'];
 		}
-		elseif ($this->_pwentropy_response['crack_time'] < $day)
+
+		if ($crackTime < $day)
 		{
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $hour)) . ' ' . $txt['pwentropy_hours'];
+			return (1 + ceil($crackTime / $hour)) . ' ' . $txt['pwentropy_hours'];
 		}
-		elseif ($this->_pwentropy_response['crack_time'] < $month)
+
+		if ($crackTime < $month)
 		{
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $day)) . ' ' . $txt['pwentropy_days'];
+			return (1 + ceil($crackTime / $day)) . ' ' . $txt['pwentropy_days'];
 		}
-		elseif ($this->_pwentropy_response['crack_time'] < $year)
+
+		if ($crackTime < $year)
 		{
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $month)) . ' ' . $txt['pwentropy_months'];
+			return (1 + ceil($crackTime / $month)) . ' ' . $txt['pwentropy_months'];
 		}
-		elseif ($this->_pwentropy_response['crack_time'] < $century)
+
+		if ($crackTime < $century)
 		{
-			return (1 + ceil($this->_pwentropy_response['crack_time'] / $year)) . ' ' . $txt['pwentropy_years'];
+			return (1 + ceil($crackTime / $year)) . ' ' . $txt['pwentropy_years'];
 		}
-		else
-		{
-			return $txt['pwentropy_centuries'];
-		}
+
+		return $txt['pwentropy_centuries'];
 	}
 
 	/**
@@ -341,13 +344,11 @@ class Pwentropy_Controller extends Action_Controller
 		global $txt;
 
 		// All the options, well at least some of them, ok just 3 right now
-		$config_vars = array(
+		return array(
 			array('desc', 'pwentropy_note'),
 			array('check', 'pwentropy_enabled'),
 			array('select', 'pwentropy_admin_mod', array($txt['pwentropy_none'], $txt['pwentropy_weak'], $txt['pwentropy_ok'], $txt['pwentropy_strong'], $txt['pwentropy_excellent'])),
 			array('select', 'pwentropy_users', array($txt['pwentropy_none'], $txt['pwentropy_weak'], $txt['pwentropy_ok'], $txt['pwentropy_strong'], $txt['pwentropy_excellent']), 'postinput' => $txt['pwentropy_users_note']),
 		);
-
-		return $config_vars;
 	}
 }

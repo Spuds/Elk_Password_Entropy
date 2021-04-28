@@ -3,7 +3,7 @@
 /**
  * @package PWEntropy
  * @author Spuds
- * @copyright (c) 2011-2014 Spuds
+ * @copyright (c) 2011-2021 Spuds
  * @license This Source Code is subject to the terms of the Mozilla Public License
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
@@ -21,7 +21,9 @@ namespace ZxcvbnPhp;
 spl_autoload_register(function ($class) {
 	$class = str_replace('\\', '/', $class);
 	if (file_exists(EXTDIR . '/' . $class . '.php'))
+	{
 		include_once EXTDIR . '/' . $class . '.php';
+	}
 });
 
 /**
@@ -43,7 +45,7 @@ class ZxcvbnPhp_Checker
 	/**
 	 * Response from the entropy library
 	 *
-	 * @var mixed[]
+	 * @var array
 	 */
 	public $pwentropy_response = '';
 
@@ -61,7 +63,7 @@ class ZxcvbnPhp_Checker
 	/**
 	 * Simply loads the library and gets the results
 	 *
-	 * @return mixed[]
+	 * @return array
 	 */
 	public function check()
 	{
