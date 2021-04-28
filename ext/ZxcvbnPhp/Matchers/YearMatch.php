@@ -2,46 +2,48 @@
 
 namespace ZxcvbnPhp\Matchers;
 
+use ZxcvbnPhp\Matcher;
+
 class YearMatch extends Match
 {
 
-    const NUM_YEARS = 119;
+    public const NUM_YEARS = 119;
+
+    public $pattern = 'regex';
+    public $regexName = 'recent_year';
 
     /**
      * Match occurences of years in a password
      *
-     * @copydoc Match::match()
+     * @param string $password
+     * @param array $userInputs
+     * @return YearMatch[]
      */
-    public static function match($password, array $userInputs = array())
+    public static function match($password, array $userInputs = [])
     {
-        $matches = array();
-        $groups = static::findAll($password, "/(19\d\d|200\d|201\d)/");
+        $matches = [];
+        $groups = static::findAll($password, "/(19\d\d|200\d|201\d)/u");
         foreach ($groups as $captures) {
             $matches[] = new static($password, $captures[1]['begin'], $captures[1]['end'], $captures[1]['token']);
         }
+        Matcher::usortStable($matches, [Matcher::class, 'compareMatches']);
         return $matches;
     }
 
-    /**
-     * @param $password
-     * @param $begin
-     * @param $end
-     * @param $token
-     */
-    public function __construct($password, $begin, $end, $token)
+    public function getFeedback($isSoleMatch)
     {
-        parent::__construct($password, $begin, $end, $token);
-        $this->pattern = 'year';
+        return [
+            'warning' => "Recent years are easy to guess",
+            'suggestions' => [
+                'Avoid recent years',
+                'Avoid years that are associated with you',
+            ]
+        ];
     }
 
-    /**
-     * @return float
-     */
-    public function getEntropy()
+    protected function getRawGuesses()
     {
-        if (is_null($this->entropy)) {
-            $this->entropy = $this->log(self::NUM_YEARS);
-        }
-        return $this->entropy;
+        $yearSpace = abs((int)$this->token - DateMatch::getReferenceYear());
+        return max($yearSpace, DateMatch::MIN_YEAR_SPACE);
     }
 }
