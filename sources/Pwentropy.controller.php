@@ -8,7 +8,7 @@
  * version 1.1 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/1.1/.
  *
- * @version 1.0.1
+ * @version 1.1.0
  *
  */
 
