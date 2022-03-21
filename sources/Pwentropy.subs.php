@@ -206,7 +206,7 @@ function ilpf_pwentropy(&$profile_fields)
 {
 	// There is the ability for admins to change a password of a user,
 	// this does not check that value
-	$profile_fields['passwrd1']['input_validate'] = function ($value) {
+	$profile_fields['passwrd1']['input_validate'] = function (&$value) {
 		global $user_info, $cur_profile, $modSettings, $txt;
 
 		$db = database();
