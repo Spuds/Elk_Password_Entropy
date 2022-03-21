@@ -206,46 +206,47 @@ function ilpf_pwentropy(&$profile_fields)
 {
 	// There is the ability for admins to change a password of a user,
 	// this does not check that value
-	$profile_fields['passwrd1']['input_validate'] = create_function('&$value', '
-				global $user_info, $cur_profile, $modSettings, $txt;
+	$profile_fields['passwrd1']['input_validate'] = function (&$value) {
+		global $user_info, $cur_profile, $modSettings, $txt;
 
-				$db = database();
+		$db = database();
 
-				// If we didn\'t try it then ignore it!
-				if ($value == \'\')
-					return false;
+		// If we didn't try it then ignore it!
+		if ($value == '')
+			return false;
 
-				// Do the two entries for the password even match?
-				if (!isset($_POST[\'passwrd2\']) || $value != $_POST[\'passwrd2\'])
-					return \'bad_new_password\';
+		// Do the two entries for the password even match?
+		if (!isset($_POST['passwrd2']) || $value != $_POST['passwrd2'])
+			return 'bad_new_password';
 
-				// Let\'s get the validation function into play...
-				require_once(SUBSDIR . \'/Auth.subs.php\');
-				$passwordErrors = validatePassword($value, $cur_profile[\'member_name\'], array($cur_profile[\'real_name\'], $user_info[\'username\'], $user_info[\'name\'], $user_info[\'email\']));
+		// Let's get the validation function into play...
+		require_once(SUBSDIR . '/Auth.subs.php');
+		$passwordErrors = validatePassword($value, $cur_profile['member_name'], array($cur_profile['real_name'], $user_info['username'], $user_info['name'], $user_info['email']));
 
-				// Were there errors?
-				if ($passwordErrors != null)
-					return \'password_\' . $passwordErrors;
+		// Were there errors?
+		if ($passwordErrors != null)
+			return 'password_' . $passwordErrors;
 
-				if (!empty($modSettings[\'pwentropy_enabled\']))
-				{
-					// Run a entropy score check
-					require_once(CONTROLLERDIR . \'/Pwentropy.controller.php\');
-					$entropy = new Pwentropy_Controller();
-					$pwentropy_response = $entropy->check_passed($value);
+		if (!empty($modSettings['pwentropy_enabled']))
+		{
+			// Run a entropy score check
+			require_once(CONTROLLERDIR . '/Pwentropy.controller.php');
+			$entropy = new Pwentropy_Controller();
+			$pwentropy_response = $entropy->check_passed($value);
 
-					// If its does not meet the requirments set an error
-					if (empty($pwentropy_response[\'valid\']))
-					{
-						loadLanguage(\'pwentropy\');
-						return $txt[\'pwentropy_error_password\'];
-					}
-				}
+			// If its does not meet the requirments set an error
+			if (empty($pwentropy_response['valid']))
+			{
+				loadLanguage('pwentropy');
+				return $txt['pwentropy_error_password'];
+			}
+		}
 
-				// Set up the new password variable... ready for storage.
-				require_once(SUBSDIR . \'/Auth.subs.php\');
-				$value = validateLoginPassword($value, \'\', $cur_profile[\'member_name\'], true);
-				return true;');
+		// Set up the new password variable... ready for storage.
+		require_once(SUBSDIR . '/Auth.subs.php');
+		$value = validateLoginPassword($value, '', $cur_profile['member_name'], true);
+		return true;
+	};
 }
 
 /**
